@@ -1,0 +1,28 @@
+<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input type="text" name="username" placeholder="Username" formControlName="username" matInput />
+  </mat-form-field>
+
+  <mat-form-field>
+    <input type="password" name="password" placeholder="Password" formControlName="password" matInput />
+  </mat-form-field>
+
+  <button mat-raised-button color="primary">Login</button>
+</form>
+
+<!-- 
+  <p *ngIf="loginForm.controls.username.errors?.required && submitted">
+    Username must be filled out
+  </p>
+ -->
+<p *ngIf="loginForm.controls.username.errors?.required && loginForm.controls.username.touched">
+  Username must be filled out
+</p>
+
+<p *ngIf="loginForm.controls.username.errors?.minlength && loginForm.controls.username.touched">
+  Username must be 3 characters or more
+</p>
+
+<p *ngIf="loginForm.controls.password.errors?.required && loginForm.controls.password.touched">
+  Password must be filled out
+</p>
