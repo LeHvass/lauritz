@@ -6,11 +6,9 @@ export class User {
   firstname: string;
   lastname: string;
   phone: string;
-  gender: Gender;
-  birthdate: Date;
-  address: string;
-  postcode: string;
-  country: string;
+  gender: Gender; // Male, Female
+  birthDate: Date;
+  
 }
 
 export enum Gender {

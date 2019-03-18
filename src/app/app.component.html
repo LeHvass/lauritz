@@ -1,12 +1,16 @@
-<mat-card>
-  <mat-tab-group>
-    <mat-tab label="Register">
-      <app-register></app-register>
-    </mat-tab>
-    <mat-tab label="Login">
-      <app-login></app-login>
-    </mat-tab>
-  </mat-tab-group>
-</mat-card>
 
-  <router-outlet></router-outlet>
+<!--The content below is only a placeholder and can be replaced.-->
+<mat-toolbar color="primary">
+  <span >Lauritz</span>
+  <button mat-button>Create new auction item</button>
+  <button mat-button>See all auctions</button>
+
+  <!-- This fills the remaining space of the current row -->
+  <span class="example-fill-remaining-space"></span>
+
+  <!-- <button mat-button>Log out</button> -->
+  <button mat-button routerLink="/home/login">Log In</button>
+</mat-toolbar>
+
+
+<router-outlet></router-outlet>
