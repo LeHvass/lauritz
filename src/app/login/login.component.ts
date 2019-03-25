@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import {MatSnackBar} from '@angular/material';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 
@@ -26,34 +26,36 @@ export class LoginComponent implements OnInit {
     )
   }
 
-  onSubmit(): void {
+  onSubmit() : void {
     this.snackBar.open('One second, logging in..', 'Close', {
       duration: 2000,
     });
 
-
+    
     console.log(this.loginForm);
 
     if (this.loginForm.valid) {
       // Send the data to the server to verify the user login
       // navigate after successful login.
 
-      console.log("First");
-      var isAdmin = this.loginForm.value.username === 'admin' ? true : false;
-
-      this.authService.login(isAdmin).subscribe(result => {
-        console.log("Third");
-        if (result) {
-          let url = this.authService.redirectUrl ? this.authService.redirectUrl : '/portal/display-auctions';
-          this.router.navigate([url]); // Use the router to go to a route, home.
-        }
-        else {
-          // Invalid login
-        }
-      });
+      console.log("First")
+      if (this.loginForm.value.username === 'admin') {
+        // call the admin authService.
+      } else {
+        this.authService.login().subscribe(result => {
+          console.log("Third");
+          if (result) {
+            let url = this.authService.redirectUrl ? this.authService.redirectUrl : '/portal/display-auctions';
+            this.router.navigate([url]); // Use the router to go to a route, home.
+          }
+          else {
+            // Invalid login
+          }
+        });
+      }
       console.log("Second")
 
-
+      
 
     }
 

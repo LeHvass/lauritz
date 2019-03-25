@@ -1,21 +1,22 @@
+import { User, UserVm } from './user';
+
 export class Product {
-  _id: string;
+  _id: string; // User does not fill out
+  user: UserVm; // User does not fill out
   name: string;
   description: string;
-  dateCreated: Date;
-  dateEnd: Date;
   startingPrice: number;
-  minimumBid: number;
-  increments: number;
-  images?: string[];
-  finalPrice: number;
-  category: string;
-  seller: string;
+  minimumBid: number; // Increase in bid of ?
+  images: string[];
+  dateCreated: Date;  // User does not fill out
+  endDate: Date;
+  bids: Bid[];  // User does not fill out
+  location: string;
 }
 
 export class Bid {
   _id: string;
   userId: string;
   amount: number;
-  dateBid: Date;
+  date: Date;
 }

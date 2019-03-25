@@ -1,3 +1,21 @@
-<p>
-  create-auction works!
-</p>
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input matInput placeholder="Name" formControlName="name">
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea matInput placeholder="Description" formControlName="description"></textarea>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input formControlName="endDate" matInput [matDatepicker]="picker" placeholder="End date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput type="number" min="1" placeholder="Starting Price" formControlName="startingPrice">
+  </mat-form-field>
+
+  <button mat-raised-button color="primary">Auction my product</button>
+</form>

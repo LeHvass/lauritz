@@ -1,5 +1,4 @@
 import { AuthGuard } from './auth/auth.guard';
-import { AdminGuard } from './auth/admin.guard';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
@@ -9,7 +8,8 @@ import { HomeComponent } from './home/home.component';
 import { PortalComponent } from './portal/portal.component';
 import { CreateAuctionComponent } from './portal/create-auction/create-auction.component';
 import { DisplayAuctionsComponent } from './portal/display-auctions/display-auctions.component';
-import { AdminComponent } from './admin/admin.component';
+import { ProductDetailsComponent } from './portal/product-details/product-details.component';
+
 
 // Defining your routes
 const routes: Routes = [
@@ -19,15 +19,12 @@ const routes: Routes = [
     {path: 'register', component: RegisterComponent},
     { path: 'login', component: LoginComponent}
   ]},
-
-  {path: 'portal', component: PortalComponent, canActivate: [AuthGuard], children:[
+  {path: 'portal', component: PortalComponent, /*canActivate: [AuthGuard],*/ children:[
     {path: 'create-auction', component: CreateAuctionComponent},
-    { path: 'display-auctions', component: DisplayAuctionsComponent}
+    { path: 'display-auctions', component: DisplayAuctionsComponent},
+    { path: 'product-details/:id', component: ProductDetailsComponent}
   ]},
-
-  {path: 'admin', component: AdminComponent, canActivate: [AdminGuard], children: [
-  ]},
-
+  
   { path: '**', component: PageNotFoundComponent }
  ];
  
