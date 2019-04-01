@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Product } from '../entities/product';
+import { Product, Bid } from '../entities/product';
 import { Gender } from '../entities/user';
 
 @Injectable({
@@ -37,9 +37,30 @@ export class TempDataService {
   
   constructor() { }
 
+  addBid(bid: Bid, productId: string) : void {
+    /// Rules to accept a bid or a custom validator
+
+    // Find product based on productId
+    const product = this.findProduct(productId);
+    // Add bid obj. to product's bid array.
+    product.bids.push(bid);
+  }
+
   addProduct(product: Product): void {
     // Should add the product to the array.
     // push it!
+    // We do not have a logged in user yet.
+    product.user = {
+      _id:'1', username: 'abc', email: 'abc@kea.dk', 
+       firstname: 'Asger', lastname: 'Poulsen', phone: '12121212', 
+       gender: Gender.Male, birthDate: new Date(1985, 2, 2),
+       profileImage: 'https://amp.businessinsider.com/images/5899ffcf6e09a897008b5c04-750-750.jpg'
+     };
+     product.dateCreated = new Date();
+     product.bids = [];
+     product.images = ['https://amp.businessinsider.com/images/5899ffcf6e09a897008b5c04-750-750.jpg'];
+
+     
     this.products.push(product);
   }
 

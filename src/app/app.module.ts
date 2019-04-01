@@ -8,7 +8,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
-import { MatDividerModule, MatCardModule, MatSnackBarModule, MatButtonModule, MatToolbarModule, MatIconModule, MatMenuModule, MatGridListModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material';
+import { MatDividerModule, MatCardModule, MatSnackBarModule, MatButtonModule, MatToolbarModule, MatIconModule, MatMenuModule, MatGridListModule, MatNativeDateModule } from '@angular/material';
 import { RegisterComponent } from './register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
@@ -19,6 +19,7 @@ import { CreateAuctionComponent } from './portal/create-auction/create-auction.c
 import { DisplayAuctionsComponent } from './portal/display-auctions/display-auctions.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { ProductDetailsComponent } from './portal/product-details/product-details.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,7 @@ import { ProductDetailsComponent } from './portal/product-details/product-detail
     AppRoutingModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MatGridListModule, MatMenuModule, MatIconModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSnackBarModule, MatCardModule, MatDividerModule, MatTooltipModule, MatDatepickerModule, MatNativeDateModule
+    MatGridListModule, MatMenuModule, MatIconModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSnackBarModule, MatCardModule, MatDividerModule, MatTooltipModule, MatNativeDateModule, MatDatepickerModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,7 +1,7 @@
 import { TempDataService } from './../../services/temp-data.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Product } from 'src/app/entities/product';
+import { Product, Bid } from 'src/app/entities/product';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -21,7 +21,6 @@ export class ProductDetailsComponent implements OnInit {
     // A non-finished way to call a method in the temp data service. 
     this.product = this.temp.findProduct(id);
 
-    // Display the product in the ui.
-
+    
   }
 }

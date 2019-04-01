@@ -1,21 +1,48 @@
 <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
-  <mat-form-field>
-    <input matInput placeholder="Name" formControlName="name">
-  </mat-form-field>
+  
+  <!-- name -->
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Name" formControlName="name">
+    </mat-form-field>
+  </div>
+  
+  <!-- description -->
+  <div>
+    <mat-form-field>
+      <textarea matInput placeholder="Description" formControlName="description"></textarea>
+    </mat-form-field>
+  </div>
 
-  <mat-form-field>
-    <textarea matInput placeholder="Description" formControlName="description"></textarea>
-  </mat-form-field>
+  <!-- starting price -->
+  <div>
+    <mat-form-field>
+      <input matInput type="number" placeholder="Starting Price" formControlName="startingPrice">
+    </mat-form-field>
+  </div>
 
-  <mat-form-field>
-    <input formControlName="endDate" matInput [matDatepicker]="picker" placeholder="End date">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-  </mat-form-field>
+  <!-- minimum bid -->
+  <div>
+    <mat-form-field>
+      <input matInput type="number" placeholder="Minimum bid" formControlName="minimumBid">
+    </mat-form-field>
+  </div>
 
-  <mat-form-field>
-    <input matInput type="number" min="1" placeholder="Starting Price" formControlName="startingPrice">
-  </mat-form-field>
+  <!-- endDate -->
+  <div>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Auction ends" formControlName="endDate">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
 
-  <button mat-raised-button color="primary">Auction my product</button>
+  <!-- location -->
+  <div>
+    <mat-form-field>
+      <input matInput placeholder="Location" formControlName="location">
+    </mat-form-field>
+  </div>
+
+  <button mat-raised-button color="primary" id="btnCreateProduct">Auction my product</button>
 </form>
