@@ -9,6 +9,7 @@ export class User {
   gender: Gender; // Male, Female
   birthDate: Date;
   profileImage: string;
+  ratings: Rating[];
 }
 
 export class UserVm {
@@ -21,6 +22,13 @@ export class UserVm {
   gender: Gender; // Male, Female
   birthDate: Date;
   profileImage: string;
+}
+
+export class Rating {
+  user: UserVm;
+  rating: number;
+  date: Date;
+  description: string;
 }
 
 export enum Gender {

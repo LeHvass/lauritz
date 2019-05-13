@@ -1,3 +1,4 @@
+import { ProductActions } from './../portal/product.actions';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {MatSnackBar} from '@angular/material';
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
 
   // DI - Dependency injection
   constructor(private fb: FormBuilder, private snackBar: MatSnackBar, private router: Router,
-    private authService: AuthService) {
+    private authService: AuthService, private prodActions: ProductActions) {
   }
 
   ngOnInit() {
@@ -31,10 +32,15 @@ export class LoginComponent implements OnInit {
       duration: 2000,
     });
 
+
+    
     
     console.log(this.loginForm);
 
     if (this.loginForm.valid) {
+      
+      this.prodActions.loggedIn(true); // Example of dispatch action from component.
+
       // Send the data to the server to verify the user login
       // navigate after successful login.
 

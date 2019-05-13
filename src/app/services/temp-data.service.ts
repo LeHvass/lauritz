@@ -6,7 +6,8 @@ import { Gender } from '../entities/user';
   providedIn: 'root'
 })
 export class TempDataService {
-  products: Product[] = [
+
+  static products: Product[] = [
     {_id: '1', user: 
       { _id:'1', username: 'abc', email: 'abc@kea.dk', 
       firstname: 'Asger', lastname: 'Poulsen', phone: '12121212', 
@@ -41,9 +42,10 @@ export class TempDataService {
     /// Rules to accept a bid or a custom validator
 
     // Find product based on productId
-    const product = this.findProduct(productId);
+    // const product = this.findProduct(productId);
     // Add bid obj. to product's bid array.
-    product.bids.push(bid);
+    // product.bids.push(bid);
+    console.log("fix error here");
   }
 
   addProduct(product: Product): void {
@@ -61,15 +63,15 @@ export class TempDataService {
      product.images = ['https://amp.businessinsider.com/images/5899ffcf6e09a897008b5c04-750-750.jpg'];
 
      
-    this.products.push(product);
+    // this.products.push(product);
   }
 
-  getProducts() {
-    return this.products;
-  }
+  // getProducts() {
+  //   return this.products;
+  // }
 
-  findProduct(id: string) : Product {
-    return this.products.find(product => product._id === id);
-  }
+  // findProduct(id: string) : Product {
+  //   return this.products.find(product => product._id === id);
+  // }
 
 }

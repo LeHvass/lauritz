@@ -19,8 +19,8 @@ export class ProductDetailsComponent implements OnInit {
     // Find the product object based on the id, from the temp-data service.
   
     // A non-finished way to call a method in the temp data service. 
-    this.product = this.temp.findProduct(id);
-
+    // this.product = this.temp.findProduct(id);
+    console.log("fix this error");
     
   }
 }
