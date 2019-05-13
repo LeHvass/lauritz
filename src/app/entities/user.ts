@@ -22,13 +22,20 @@ export class UserVm {
   gender: Gender; // Male, Female
   birthDate: Date;
   profileImage: string;
+  ratings: Rating[];
 }
 
 export class Rating {
-  user: UserVm;
-  rating: number;
   date: Date;
+  user: UserRating;
   description: string;
+  grade: number; // 1-5 'stars'
+}
+
+export class UserRating {
+  _id: string;
+  username: string;
+  profileImage: string;
 }
 
 export enum Gender {

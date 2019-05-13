@@ -1,3 +1,5 @@
+import { ProductActions } from './portal/product.actions';
+import { ProductsApiService } from './services/products-api.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +9,15 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'lauritz';
+
+  constructor() {
+    
+
+
+
+    // this.api.getProducts().subscribe(result => {
+    //   let filtered = result.filter(x => x.customerId === 'chrk2');
+    //   console.log(filtered);
+    // })
+  }
 }

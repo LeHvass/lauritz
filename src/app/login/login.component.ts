@@ -27,11 +27,12 @@ export class LoginComponent implements OnInit {
     )
   }
 
-  onSubmit() : void {
+
+
+  onSubmit(): void {
     this.snackBar.open('One second, logging in..', 'Close', {
       duration: 2000,
     });
-
 
     
     

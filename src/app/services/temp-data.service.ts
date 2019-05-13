@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Product, Bid } from '../entities/product';
-import { Gender } from '../entities/user';
+import { Gender, UserVm } from '../entities/user';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +12,8 @@ export class TempDataService {
       { _id:'1', username: 'abc', email: 'abc@kea.dk', 
       firstname: 'Asger', lastname: 'Poulsen', phone: '12121212', 
       gender: Gender.Male, birthDate: new Date(1985, 2, 2),
-    profileImage: 'https://amp.businessinsider.com/images/5899ffcf6e09a897008b5c04-750-750.jpg'},
+    profileImage: 'https://amp.businessinsider.com/images/5899ffcf6e09a897008b5c04-750-750.jpg',
+  } as UserVm,
       
     name: 'Hair Brush', description: 'test bla bla', 
     startingPrice: 100, minimumBid: 10, 
@@ -26,7 +27,7 @@ export class TempDataService {
       firstname: 'Asger', lastname: 'Poulsen', phone: '12121212', 
       gender: Gender.Male, birthDate: new Date(1985, 2, 2),
       profileImage: 'https://amp.businessinsider.com/images/5899ffcf6e09a897008b5c04-750-750.jpg'
-    },
+    }as UserVm,
       
     name: 'Mirror', description: 'test bla bla', 
     startingPrice: 1000, minimumBid: 50, 
@@ -56,7 +57,8 @@ export class TempDataService {
       _id:'1', username: 'abc', email: 'abc@kea.dk', 
        firstname: 'Asger', lastname: 'Poulsen', phone: '12121212', 
        gender: Gender.Male, birthDate: new Date(1985, 2, 2),
-       profileImage: 'https://amp.businessinsider.com/images/5899ffcf6e09a897008b5c04-750-750.jpg'
+       profileImage: 'https://amp.businessinsider.com/images/5899ffcf6e09a897008b5c04-750-750.jpg',
+       ratings: []
      };
      product.dateCreated = new Date();
      product.bids = [];

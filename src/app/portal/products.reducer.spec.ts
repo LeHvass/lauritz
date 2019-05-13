@@ -6,106 +6,42 @@ import * as types from './product.actions';
 import { Gender } from '../entities/user';
 
 describe('products reducer', () => {
-
+ 
   it('should return the initial state', () => {
-    expect(productsReducer(undefined, {})).toEqual(
-      { isLoggedIn: undefined, products: TempDataService.products });
+   expect(productsReducer(undefined, {})).toEqual(
+     {isLoggedIn: undefined, products: TempDataService.products});
   });
 
   it('set isLoggedIn to true', () => {
-
-    let state = { isLoggedIn: undefined, products: TempDataService.products };
+    
+    let state = {isLoggedIn: undefined, products: TempDataService.products};
     deepFreeze(state);
-
-    expect(productsReducer(state, { type: types.ProductActions.LOG_IN, payload: true }))
-      .toEqual({ isLoggedIn: true, products: TempDataService.products });
+    
+    expect( productsReducer(state, { type: types.ProductActions.LOG_IN, payload: true }))
+      .toEqual({isLoggedIn: true, products: TempDataService.products});
   });
 
   // Create a test to check that your create functionality works AND
   // does not make state mutations
   it('should add a new product', () => {
-    let stateBefore = { products: [] } as ProductState;
+    let stateBefore = {products: []} as ProductState; 
     deepFreeze(stateBefore);
 
-    let product = {
-      _id: '1', user:
-      {
-        _id: '1', username: 'abc', email: 'abc@kea.dk',
-        firstname: 'Asger', lastname: 'Poulsen', phone: '12121212',
+    let product = {_id: '1', user: 
+        { _id:'1', username: 'abc', email: 'abc@kea.dk', 
+        firstname: 'Asger', lastname: 'Poulsen', phone: '12121212', 
         gender: Gender.Male, birthDate: new Date(1985, 2, 2),
-        profileImage: 'https://amp.businessinsider.com/images/5899ffcf6e09a897008b5c04-750-750.jpg'
-      },
-
-      name: 'Hair Brush', description: 'test bla bla',
-      startingPrice: 100, minimumBid: 10,
-      images: ['https://cdn.shopify.com/s/files/1/0066/0052/files/Hair_brush_guide_6.jpg'], dateCreated: new Date(2019, 2, 18),
-      endDate: new Date(2019, 3, 18), bids: [], location: 'Copenhagen'
+      profileImage: 'https://amp.businessinsider.com/images/5899ffcf6e09a897008b5c04-750-750.jpg'},
+        
+      name: 'Hair Brush', description: 'test bla bla', 
+      startingPrice: 100, minimumBid: 10, 
+      images: ['https://cdn.shopify.com/s/files/1/0066/0052/files/Hair_brush_guide_6.jpg'], dateCreated: new Date(2019,2,18), 
+      endDate: new Date(2019,3,18), bids: [], location: 'Copenhagen'
     }
 
-    let stateAfter = { products: [product] };
+    let stateAfter = {products: [product]};
 
-    let response = productsReducer(stateBefore, { type: types.ProductActions.CREATE_PRODUCT, payload: product });
-    expect(stateAfter).toEqual(response);
-  });
-
-  // Create a test to check that your create functionality works AND
-  // does not make state mutations
-  it('should update a product', () => {
-    let stateBefore = {
-      products: [
-        {
-          _id: '1', user:
-          {
-            _id: '1', username: 'abc', email: 'abc@kea.dk',
-            firstname: 'Asger', lastname: 'Poulsen', phone: '12121212',
-            gender: Gender.Male, birthDate: new Date(1985, 2, 2),
-            profileImage: 'https://amp.businessinsider.com/images/5899ffcf6e09a897008b5c04-750-750.jpg'
-          },
-
-          name: 'Hair Brush', description: 'test bla bla',
-          startingPrice: 100, minimumBid: 10,
-          images: ['https://cdn.shopify.com/s/files/1/0066/0052/files/Hair_brush_guide_6.jpg'], dateCreated: new Date(2019, 2, 18),
-          endDate: new Date(2019, 3, 18), bids: [], location: 'Copenhagen'
-        }
-      ]
-    } as ProductState;
-    deepFreeze(stateBefore);
-
-    let stateAfter = {
-      products: [
-        {
-          _id: '1', user:
-          {
-            _id: '1', username: 'abc', email: 'abc@kea.dk',
-            firstname: 'Asger', lastname: 'Poulsen', phone: '12121212',
-            gender: Gender.Male, birthDate: new Date(1985, 2, 2),
-            profileImage: 'https://amp.businessinsider.com/images/5899ffcf6e09a897008b5c04-750-750.jpg'
-          },
-
-          name: 'Hair Brush New', description: 'test bla bla',
-          startingPrice: 100, minimumBid: 10,
-          images: ['https://cdn.shopify.com/s/files/1/0066/0052/files/Hair_brush_guide_6.jpg'], dateCreated: new Date(2019, 2, 18),
-          endDate: new Date(2019, 3, 18), bids: [], location: 'Copenhagen'
-        }
-      ]
-    };
-
-    let response = productsReducer(stateBefore, {
-      type: types.ProductActions.UPDATE_PRODUCT, payload: {
-        _id: '1', user:
-        {
-          _id: '1', username: 'abc', email: 'abc@kea.dk',
-          firstname: 'Asger', lastname: 'Poulsen', phone: '12121212',
-          gender: Gender.Male, birthDate: new Date(1985, 2, 2),
-          profileImage: 'https://amp.businessinsider.com/images/5899ffcf6e09a897008b5c04-750-750.jpg'
-        },
-
-        name: 'Hair Brush New', description: 'test bla bla',
-        startingPrice: 100, minimumBid: 10,
-        images: ['https://cdn.shopify.com/s/files/1/0066/0052/files/Hair_brush_guide_6.jpg'], dateCreated: new Date(2019, 2, 18),
-        endDate: new Date(2019, 3, 18), bids: [], location: 'Copenhagen'
-      }
-    });
+    let response = productsReducer(stateBefore, {type: types.ProductActions.CREATE_PRODUCT, payload: product});
     expect(stateAfter).toEqual(response);
   });
 
@@ -116,30 +52,39 @@ describe('products reducer', () => {
     // 4: Call the reducer
     // 5: expect statements (assert)
 
-    let stateBefore = {
-      products: [
-        {
-          _id: '1', user:
-          {
-            _id: '1', username: 'abc', email: 'abc@kea.dk',
-            firstname: 'Asger', lastname: 'Poulsen', phone: '12121212',
-            gender: Gender.Male, birthDate: new Date(1985, 2, 2),
-            profileImage: 'https://amp.businessinsider.com/images/5899ffcf6e09a897008b5c04-750-750.jpg'
-          },
+      let beforeState = {products: [{_id: '1', name: 'Hair Brush'},{_id: '2', name: 'Nail conditioner'},{_id: '3', name: 'Nail psykologist'}]} as ProductState;
+      deepFreeze(beforeState);
+      let afterState = {products: [{_id: '1', name: 'Hair Brush'},{_id: '3', name: 'Nail psykologist'}]};
+      let response = productsReducer(beforeState, {type: types.ProductActions.DELETE_PRODUCT, payload: '2'})
+      
+      expect(afterState).toEqual(response);
+  });
 
-          name: 'Hair Brush', description: 'test bla bla',
-          startingPrice: 100, minimumBid: 10,
-          images: ['https://cdn.shopify.com/s/files/1/0066/0052/files/Hair_brush_guide_6.jpg'], dateCreated: new Date(2019, 2, 18),
-          endDate: new Date(2019, 3, 18), bids: [], location: 'Copenhagen'
-        }
-      ]
-    } as ProductState;
-    deepFreeze(stateBefore);
+  it('should update a product object', () => {
+    let beforeState = {products: [{_id: '1', name: 'Hair Brush'},
+    {_id: '2', name: 'Nail conditioner'},
+    {_id: '3', name: 'Nail psykologist'}]} as ProductState;
+    deepFreeze(beforeState);
 
-    let stateAfter = { products: [] };
+    let afterState = {products: [{_id: '1', name: 'Hair Brush'},
+    {_id: '2', name: 'Nail conditioner'},
+    {_id: '3', name: 'Nail polish'}]} as ProductState;
+    
+    let response = productsReducer(beforeState, {type: types.ProductActions.UPDATE_PRODUCT, 
+      payload: {_id: '3', name: 'Nail polish'}})
+    
+      expect(afterState).toEqual(response);
+  });
 
-    let response = productsReducer(stateBefore, { type: types.ProductActions.DELETE_PRODUCT, payload: '1' });
-    expect(stateAfter).toEqual(response);
+
+
+  it('should test slice', () => {
+    let array = ['hat', 'cat', 'sad', 'dog'];
+    let pos = array.findIndex(x => x === 'sad');
+    let array2 = [...array.slice(0, pos), 'hi', ...array.slice(pos+1)];
+
+    expect(array2).toEqual(['hat', 'cat', 'hi', 'dog']);
+
 
   });
 });

@@ -1,6 +1,9 @@
 
 
 <div class="card-container">
+  <div *ngIf="isLoading">
+    Please wait... We are loading products
+  </div>
   <div *ngFor="let p of products">
     
       <app-product [product]="p" (nameOfTheEventOr)="onProductClick($event)"></app-product>

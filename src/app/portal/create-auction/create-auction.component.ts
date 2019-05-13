@@ -1,3 +1,4 @@
+import { ProductsApiService } from './../../services/products-api.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Gender } from 'src/app/entities/user';
@@ -15,7 +16,8 @@ export class CreateAuctionComponent implements OnInit {
   productForm: FormGroup;
 
   constructor(private fb: FormBuilder, private temp: TempDataService, 
-    private router: Router, private productActions: ProductActions) { }
+    private router: Router, private productActions: ProductActions, 
+    private api: ProductsApiService) { }
 
   ngOnInit() {
     this.productForm = this.fb.group({
@@ -31,12 +33,25 @@ export class CreateAuctionComponent implements OnInit {
   onSubmit() {
     let product = this.productForm.value as Product;
 
-    this.productActions.createNewProduct(product);
+    console.log("1");
+    this.api.createProduct(product).subscribe(resultFromWs => {
+      console.log(resultFromWs);
+      console.log("a");
+      this.productActions.createNewProduct(resultFromWs);
+      this.router.navigate(['/portal/display-auctions']);
+    }, error => {
+      console.log("error", error);
+
+    });
+
+    console.log("b");
+    
+    
     // this.temp.addProduct(product);
 
     console.log(product);
     console.log("productForm ", this.productForm);
 
-    this.router.navigate(['/portal/display-auctions']);
+    
   }
 }
