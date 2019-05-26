@@ -1,5 +1,17 @@
-<p>
-  product-details works!
-</p>
+<div *ngIf="product">
+  <p>{{product.name}}</p>
 
-{{product.name}}
+  <p>{{numberOfBids}} bids</p>
+
+  <button mat-button routerLink="/portal/product-details/{{product._id}}/bids">See all bids</button>
+
+  <form [formGroup]="bidForm" (ngSubmit)="onSubmit()">
+
+    <!-- starting price -->
+    <mat-form-field>
+      <input matInput type="number" placeholder="Bid" formControlName="bid">
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" id="btnSubmitBid" [disabled]="isLoading">Submit bid</button>
+  </form>
+</div>

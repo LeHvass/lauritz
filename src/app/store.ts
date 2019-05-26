@@ -12,15 +12,14 @@ export class ProductState {
   products: Product[];
   isLoggedIn: boolean; // Should be in an auth section and not in products
   isLoading: boolean;
-  isDeleting: boolean;
 }
 export class AppState {
   products?: ProductState;
   users?: UserState;
 }
 export const rootReducer = combineReducers<AppState>({
-products: productsReducer,
-users: usersReducer,
+  products: productsReducer,
+  users: usersReducer,
 
-router: routerReducer
+  router: routerReducer
 } as any);

@@ -1,20 +1,15 @@
-<mat-card class="example-card">
+<mat-card class="example-card" routerLink="/portal/product-details/{{product._id}}">
   <mat-card-header>
-    <div *ngIf="product.user">
-      <div mat-card-avatar class="example-header-image"
-        matTooltip="{{product.user.firstname}} {{product.user.lastname}}">
-        <img mat-card-image src="{{product.user.profileImage}}" alt="profile image">
-      </div>
-    </div>
 
-    <mat-card-title>{{product.name}}</mat-card-title>
-    <mat-card-subtitle>Auction end: {{product.endDate | date}}</mat-card-subtitle>
+    <div mat-card-avatar class="example-header-image" matTooltip="{{product.user.firstname}} {{product.user.lastname}}">
+      <img mat-card-image src="{{product.user.profileImage}}" alt="profile image">
+    </div>
+    <mat-card-title>{{product.name | uppercase}}</mat-card-title>
+    <mat-card-subtitle>Auction end: {{product.endDate | date: 'dd/MM/yyyy'}}</mat-card-subtitle>
   </mat-card-header>
 
-  <div *ngIf="product.images">
-    <img mat-card-image src="{{product.images[0]}}" alt="product image"
-      routerLink="/portal/product-details/{{product._id}}">
-  </div>
+
+  <img *ngIf="product.images" mat-card-image src="{{product.images[0]}}" alt="product image">
 
   <mat-card-content>
     <p>

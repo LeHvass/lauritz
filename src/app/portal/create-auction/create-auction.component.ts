@@ -6,6 +6,8 @@ import { TempDataService } from 'src/app/services/temp-data.service';
 import { Product } from 'src/app/entities/product';
 import { Router } from '@angular/router';
 import { ProductActions } from '../product.actions';
+import { NgRedux } from '@angular-redux/store';
+import { AppState } from 'src/app/store';
 
 @Component({
   selector: 'app-create-auction',
@@ -14,10 +16,11 @@ import { ProductActions } from '../product.actions';
 })
 export class CreateAuctionComponent implements OnInit {
   productForm: FormGroup;
+  isLoading: boolean;
 
   constructor(private fb: FormBuilder, private temp: TempDataService, 
     private router: Router, private productActions: ProductActions, 
-    private api: ProductsApiService) { }
+    private api: ProductsApiService, private ngRedux: NgRedux<AppState>) { }
 
   ngOnInit() {
     this.productForm = this.fb.group({
@@ -27,24 +30,30 @@ export class CreateAuctionComponent implements OnInit {
       minimumBid: ['',Validators.required],
       endDate: ['',Validators.required],
       location: ['',Validators.required],
-    })
+    });
+
+    this.ngRedux.select(x => x.products).subscribe(state => {
+      this.isLoading = state.isLoading;
+    });
   }
 
   onSubmit() {
+
+    // This method should dispatch an action by calling createNewProduct()
     let product = this.productForm.value as Product;
+    this.productActions.createNewProduct(product);
+    
+    // Should be in product.actions.
+    // Call the api.
+    // this.api.createProduct(product).subscribe(resultFromWs => {
+    //   console.log(resultFromWs);
+    //   console.log("a");
+    //   this.productActions.createNewProduct(resultFromWs);
+      
+    // }, error => {
+    //   console.log("error", error);
 
-    console.log("1");
-    this.api.createProduct(product).subscribe(resultFromWs => {
-      console.log(resultFromWs);
-      console.log("a");
-      this.productActions.createNewProduct(resultFromWs);
-      this.router.navigate(['/portal/display-auctions']);
-    }, error => {
-      console.log("error", error);
-
-    });
-
-    console.log("b");
+    // });
     
     
     // this.temp.addProduct(product);

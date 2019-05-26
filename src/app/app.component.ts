@@ -10,10 +10,10 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'lauritz';
 
-  constructor() {
-    
+  constructor(private prodActions: ProductActions) {
+    this.prodActions.getProducts();
 
-
+console.log('test');
 
     // this.api.getProducts().subscribe(result => {
     //   let filtered = result.filter(x => x.customerId === 'chrk2');

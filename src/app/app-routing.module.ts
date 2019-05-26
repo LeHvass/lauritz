@@ -9,6 +9,7 @@ import { PortalComponent } from './portal/portal.component';
 import { CreateAuctionComponent } from './portal/create-auction/create-auction.component';
 import { DisplayAuctionsComponent } from './portal/display-auctions/display-auctions.component';
 import { ProductDetailsComponent } from './portal/product-details/product-details.component';
+import { BidsComponent } from './portal/product-details/bids/bids.component';
 
 
 // Defining your routes
@@ -19,10 +20,12 @@ const routes: Routes = [
     {path: 'register', component: RegisterComponent},
     { path: 'login', component: LoginComponent}
   ]},
-  {path: 'portal', component: PortalComponent, canActivate: [AuthGuard], children:[
+  {path: 'portal', component: PortalComponent, /*canActivate: [AuthGuard],*/ children:[
     {path: 'create-auction', component: CreateAuctionComponent},
     { path: 'display-auctions', component: DisplayAuctionsComponent},
-    { path: 'product-details/:id', component: ProductDetailsComponent}
+    { path: 'product-details/:id', component: ProductDetailsComponent, children:[{
+      path: 'bids', component: BidsComponent
+    }]}
   ]},
   
   { path: '**', component: PageNotFoundComponent }
