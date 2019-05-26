@@ -53,7 +53,7 @@ export class ProductActions {
     this.ngRedux.dispatch({ type: ProductActions.GET_PRODUCTS_LOADING });
 
     this.api.getProducts().subscribe(result => {
-      console.log(result);
+      //console.log(result);
       this.ngRedux.dispatch({
         type: ProductActions.GET_PRODUCTS_SUCCESS,
         payload: result.filter(prod => prod._id === id)
@@ -68,7 +68,7 @@ export class ProductActions {
 
 
   loggedIn(isLoggedIn: boolean): void {
-    console.log(isLoggedIn);
+    //console.log(isLoggedIn);
     this.ngRedux.dispatch({
       type: ProductActions.LOG_IN,
       payload: isLoggedIn

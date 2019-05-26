@@ -4,17 +4,26 @@
   </mat-form-field>
 </div>
 
-<div>
-  <mat-form-field>
-    <input matInput placeholder="Seller rating must be over" [(ngModel)]="sellerRating">
+<div class="pos-relative">
+  <p>Only show products below this price</p>
+  <span class="pos-absolute font-12 grey-1">{{minPrice}}</span>
+  <mat-slider matInput [max]="maxPrice" [min]="minPrice" [thumbLabel]="true" [(ngModel)]="maxPriceInput">
+  </mat-slider>
+  <span class="pos-absolute font-12 grey-1 t-left-100p">{{maxPrice}}</span>
+  <mat-form-field class="ml-20">
+    <input matInput placeholder="" [(ngModel)]="maxPriceInput">
   </mat-form-field>
 </div>
 
 <div class="card-container">
   <div *ngIf="isLoading">
     Please wait... We are loading products
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
   </div>
-  <div *ngFor="let p of products | productFilter: searchInput: sellerRating">
+  <div>
+    Showing {{filterMetaData.count}} of {{products.length}} products
+  </div>
+  <div *ngFor="let p of products | productFilter: searchInput: maxPriceInput: filterMetaData">
 
     <app-product [product]="p" (nameOfTheEventOr)="onProductClick($event)"></app-product>
 

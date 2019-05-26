@@ -6,6 +6,7 @@ import { ProductActions } from '../product.actions';
 import { NgRedux } from '@angular-redux/store';
 import { AppState } from 'src/app/store';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
@@ -19,39 +20,46 @@ export class ProductDetailsComponent implements OnInit {
   bidForm: FormGroup;
   numberOfBids: number;
 
-  constructor(private temp: TempDataService, 
+  constructor(private temp: TempDataService,
     private route: ActivatedRoute,
     private ngRedux: NgRedux<AppState>,
     private prodActions: ProductActions,
-    private fb: FormBuilder,) { }
+    private fb: FormBuilder,
+    private titleService: Title) { }
 
   ngOnInit() {
     // Empty product
-
+    
     // Get product id from URL
     const id = this.route.snapshot.paramMap.get('id');
     
     this.ngRedux.select(state => state.products).subscribe(res => {
+      console.log(res.products);
+      if(res.products.length <=0) {
+        return;
+      }
       this.product = res.products.find(product => product._id == id);
-
-      // set number of bids
-      this.numberOfBids = this.product && this.product.bids ? this.product.bids.length : 0;
-
+      
+      console.log(this.product);
+      this.titleService.setTitle(this.product.name);
+      
       // set values for bid form
-      if(this.product && this.product.bids) {
+      if (this.product && this.product.bids) {
         // find highest bid
-        let highestBid = Math.max.apply(Math,this.product.bids.map(function(bid){return bid.amount;}))
+        console.log(this.product)
+        let highestBid = Math.max.apply(Math, this.product.bids.map(function (bid) { return bid.amount; }))
+        console.log(highestBid);
         // add minimum increase
         let minimumBid = highestBid + this.product.minimumBid;
         // set bid
         this.bidAmount = minimumBid;
       } else if (this.product && this.product.startingPrice) {
         this.bidAmount = this.product.startingPrice;
+        let highestBid = 0;
       }
-      console.log(this.product)
 
       this.bidForm = this.fb.group({
-        bid: [this.bid, [Validators.required, Validators.min(this.bidAmount)]]
+        bid: [this.bidAmount, [Validators.required, Validators.min(this.bidAmount)]]
       });
       //this.isLoading = res.isLoading;
     });
@@ -59,7 +67,7 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   onSubmit() {
-    
+
     console.log('bid form submitted')
     let bidAmount = this.bidForm.value.bid;
     let bid = {
@@ -67,7 +75,10 @@ export class ProductDetailsComponent implements OnInit {
       userId: 'test',
       date: new Date()
     } as Bid;
-    this.product.bids.push();
+    if (!this.product.bids) {
+      this.product.bids = [];
+    }
+    this.product.bids.push(bid);
     console.log(bid);
     this.prodActions.createBid(this.product);
   }

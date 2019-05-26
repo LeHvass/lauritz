@@ -1,7 +1,6 @@
-
 <!--The content below is only a placeholder and can be replaced.-->
 <mat-toolbar color="primary">
-  <span >Lauritz</span>
+  <span routerLink="/">Lauritz</span>
   <button mat-button routerLink="/portal/create-auction" id="btnNewAuction">Create new auction item</button>
   <button mat-button routerLink="/portal/display-auctions">See all auctions</button>
 
@@ -12,5 +11,6 @@
   <button mat-button routerLink="/home/login" id="btnLogin">Log In</button>
 </mat-toolbar>
 
-
-<router-outlet></router-outlet>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

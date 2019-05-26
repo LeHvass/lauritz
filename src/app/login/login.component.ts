@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {MatSnackBar} from '@angular/material';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-login', // name of component
@@ -15,10 +16,12 @@ export class LoginComponent implements OnInit {
 
   // DI - Dependency injection
   constructor(private fb: FormBuilder, private snackBar: MatSnackBar, private router: Router,
-    private authService: AuthService, private prodActions: ProductActions) {
+    private authService: AuthService, private prodActions: ProductActions, private titleService: Title) {
   }
 
   ngOnInit() {
+    this.titleService.setTitle('Login');
+
     this.loginForm = this.fb.group(
       {
         username: ['', [Validators.required, Validators.minLength(3)]], // multiple validators

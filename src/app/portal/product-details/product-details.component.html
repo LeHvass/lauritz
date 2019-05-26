@@ -1,7 +1,8 @@
 <div *ngIf="product">
-  <p>{{product.name}}</p>
+  <h1>{{product.name}}</h1>
+  <h2>{{this.highestBid}}</h2>
 
-  <p>{{numberOfBids}} bids</p>
+  <p>{{product.bids.length}} bids</p>
 
   <button mat-button routerLink="/portal/product-details/{{product._id}}/bids">See all bids</button>
 

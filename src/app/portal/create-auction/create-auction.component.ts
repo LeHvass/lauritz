@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { ProductActions } from '../product.actions';
 import { NgRedux } from '@angular-redux/store';
 import { AppState } from 'src/app/store';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-create-auction',
@@ -20,9 +21,12 @@ export class CreateAuctionComponent implements OnInit {
 
   constructor(private fb: FormBuilder, private temp: TempDataService, 
     private router: Router, private productActions: ProductActions, 
-    private api: ProductsApiService, private ngRedux: NgRedux<AppState>) { }
+    private api: ProductsApiService, private ngRedux: NgRedux<AppState>,
+    private titleService: Title) { }
 
   ngOnInit() {
+    this.titleService.setTitle('Create new product');
+
     this.productForm = this.fb.group({
       name: ['', Validators.required],
       description: ['',Validators.required],
