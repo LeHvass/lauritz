@@ -8,7 +8,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { MatDividerModule, MatCardModule, MatSnackBarModule, MatButtonModule, MatToolbarModule, MatIconModule, MatMenuModule, MatGridListModule, MatNativeDateModule, MatSliderModule, MatProgressBarModule } from '@angular/material';
+import { MatDividerModule, MatCardModule, MatSnackBarModule, MatButtonModule, MatToolbarModule, MatIconModule, MatMenuModule, MatGridListModule, MatNativeDateModule, MatSliderModule, MatProgressBarModule, MatTableModule } from '@angular/material';
 import { RegisterComponent } from './register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
@@ -52,7 +52,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FormsModule,
     FlexLayoutModule,
     NgReduxModule, NgReduxRouterModule.forRoot(),
-    MatGridListModule, MatMenuModule, MatIconModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSnackBarModule, MatSliderModule, MatCardModule, MatDividerModule, MatTooltipModule, MatNativeDateModule, MatProgressBarModule, MatDatepickerModule,
+    MatGridListModule, MatMenuModule, MatIconModule, MatToolbarModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSnackBarModule,
+    MatSliderModule, MatCardModule, MatDividerModule, MatTooltipModule, MatNativeDateModule, MatProgressBarModule, MatDatepickerModule, MatTableModule,
     HttpClientModule
   ],
   providers: [Title],

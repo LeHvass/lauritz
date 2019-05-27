@@ -76,15 +76,4 @@ describe('products reducer', () => {
       expect(afterState).toEqual(response);
   });
 
-
-
-  it('should test slice', () => {
-    let array = ['hat', 'cat', 'sad', 'dog'];
-    let pos = array.findIndex(x => x === 'sad');
-    let array2 = [...array.slice(0, pos), 'hi', ...array.slice(pos+1)];
-
-    expect(array2).toEqual(['hat', 'cat', 'hi', 'dog']);
-
-
-  });
 });

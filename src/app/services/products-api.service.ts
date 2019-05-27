@@ -36,9 +36,9 @@ export class ProductsApiService {
     return this.http.post(this.baseUrl, product);
   }
   updateProduct(product: Product) {
-    return this.http.put(this.baseUrl + '/' + product._id, product);
+    return this.http.put(this.baseUrl + '/' + product._id, product, {responseType: 'text'});
   }
   deleteProduct(productId: string) {
-    return this.http.delete(this.baseUrl + '/' + productId);
+    return this.http.delete(this.baseUrl + '/' + productId, {responseType: 'text'});
   }
 }

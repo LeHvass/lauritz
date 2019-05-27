@@ -114,6 +114,7 @@ export class ProductActions {
       });
 
     }, error => {
+      console.log(error)
       this.ngRedux.dispatch({
         type: ProductActions.UPDATE_PRODUCT_FAILURE,
         payload: error

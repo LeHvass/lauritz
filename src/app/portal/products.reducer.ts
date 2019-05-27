@@ -44,7 +44,6 @@ export function productsReducer(state: ProductState = INITIAL_STATE, action: any
       console.log(newState);
       return newState;
 
-
     case ProductActions.UPDATE_PRODUCT:
       //action.payload is a product object
       let stateUpdate = [...state.products];

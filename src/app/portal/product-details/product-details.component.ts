@@ -52,6 +52,7 @@ export class ProductDetailsComponent implements OnInit {
         // add minimum increase
         let minimumBid = highestBid + this.product.minimumBid;
         // set bid
+        console.log(minimumBid)
         this.bidAmount = minimumBid;
       } else if (this.product && this.product.startingPrice) {
         this.bidAmount = this.product.startingPrice;

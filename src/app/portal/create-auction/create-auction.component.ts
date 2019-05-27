@@ -46,24 +46,6 @@ export class CreateAuctionComponent implements OnInit {
     // This method should dispatch an action by calling createNewProduct()
     let product = this.productForm.value as Product;
     this.productActions.createNewProduct(product);
-    
-    // Should be in product.actions.
-    // Call the api.
-    // this.api.createProduct(product).subscribe(resultFromWs => {
-    //   console.log(resultFromWs);
-    //   console.log("a");
-    //   this.productActions.createNewProduct(resultFromWs);
-      
-    // }, error => {
-    //   console.log("error", error);
-
-    // });
-    
-    
-    // this.temp.addProduct(product);
-
-    console.log(product);
-    console.log("productForm ", this.productForm);
 
     
   }
