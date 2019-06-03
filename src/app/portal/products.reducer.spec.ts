@@ -39,7 +39,7 @@ describe('products reducer', () => {
 
     let stateAfter = {products: [product]};
 
-    let response = productsReducer(stateBefore, {type: types.ProductActions.CREATE_PRODUCT, payload: product});
+    let response = productsReducer(stateBefore, {type: types.ProductActions.CREATE_PRODUCT_SUCCESS, payload: product});
     expect(stateAfter).toEqual(response);
   });
 
