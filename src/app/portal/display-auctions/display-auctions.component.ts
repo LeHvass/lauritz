@@ -31,9 +31,6 @@ export class DisplayAuctionsComponent implements OnInit {
     private fb: FormBuilder) { }
 
   ngOnInit() {
-    // this.products = this.temp.getProducts();
-    //Subscribe to part of the store. Here we sub. to the products, so we can show them in the UI.
-
     this.ngRedux.select(state => state.products).subscribe(res => {
       this.products = res.products;
       this.isLoading = res.isLoading;

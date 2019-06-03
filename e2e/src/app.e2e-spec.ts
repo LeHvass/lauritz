@@ -20,19 +20,17 @@ describe('workspace-project App', () => {
     expect(loginText).toEqual('Login');
   });
 
-  it('should test ...', () => {
-    // write test no. 2.
+  it('should verify that logging in takes the user to the display auctions page', () => {
+
     browser.get('/home/login');
     
     page.getByFormControlName('username').sendKeys('whatever');
-    // browser.sleep(1000);
-    page.getByFormControlName('password').sendKeys('whateverPassword'); // nice alternative where no id is needed.
-    // browser.sleep(1000);
+
+    page.getByFormControlName('password').sendKeys('whateverPassword');
+
     element(by.id('btnUserlogin')).click();
-    // browser.sleep(1000);
+
     expect(browser.getCurrentUrl()).toEqual(browser.baseUrl+'/portal/display-auctions');
-    // browser.sleep(1000);
-    
     
   });
 

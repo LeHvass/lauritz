@@ -12,16 +12,7 @@ export class ProductsApiService {
   baseUrl: string = 'http://angular2api2.azurewebsites.net/api/internships';
   constructor(private http: HttpClient) { }
   
-  /*getProduct(id: string) {
-    let products = this.http.get(this.baseUrl);
-    return products.filter(product => product._id == id)
-    //return products.filter(product => product._id == id) as Observable<Product>;
-    return product;
-    return this.http.get(this.baseUrl) as Observable<Product>;
-  }*/
-
   getProducts() : Observable<Product[]>{
-    // Filter only customerId === 'chrk' should be used.
     return this.http.get(this.baseUrl) as Observable<Product[]>;
   }
   createProduct(product: Product) : Observable<any> {

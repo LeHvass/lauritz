@@ -29,34 +29,30 @@ export class ProductDetailsComponent implements OnInit {
 
   ngOnInit() {
     // Empty product
-    
+
     // Get product id from URL
     const id = this.route.snapshot.paramMap.get('id');
-    
+
     this.ngRedux.select(state => state.products).subscribe(res => {
       console.log(res.products);
-      if(res.products.length <=0) {
+      if (res.products.length <= 0) {
         return;
       }
       this.product = res.products.find(product => product._id == id);
-      
+
       console.log(this.product);
       this.titleService.setTitle(this.product.name);
-      
+
       // set values for bid form
       if (this.product && this.product.bids) {
         // find highest bid
-        console.log(this.product)
         let highestBid = Math.max.apply(Math, this.product.bids.map(function (bid) { return bid.amount; }))
-        console.log(highestBid);
         // add minimum increase
         let minimumBid = highestBid + this.product.minimumBid;
         // set bid
-        console.log(minimumBid)
         this.bidAmount = minimumBid;
       } else if (this.product && this.product.startingPrice) {
         this.bidAmount = this.product.startingPrice;
-        let highestBid = 0;
       }
 
       this.bidForm = this.fb.group({
@@ -69,18 +65,20 @@ export class ProductDetailsComponent implements OnInit {
 
   onSubmit() {
 
-    console.log('bid form submitted')
-    let bidAmount = this.bidForm.value.bid;
-    let bid = {
-      amount: bidAmount,
-      userId: 'test',
-      date: new Date()
-    } as Bid;
-    if (!this.product.bids) {
-      this.product.bids = [];
+    if (this.bidForm.valid) {
+      console.log('bid form submitted')
+      let bidAmount = this.bidForm.value.bid;
+      let bid = {
+        amount: bidAmount,
+        userId: 'test',
+        date: new Date()
+      } as Bid;
+      if (!this.product.bids) {
+        this.product.bids = [];
+      }
+      this.product.bids.push(bid);
+      console.log(bid);
+      this.prodActions.createBid(this.product);
     }
-    this.product.bids.push(bid);
-    console.log(bid);
-    this.prodActions.createBid(this.product);
   }
 }

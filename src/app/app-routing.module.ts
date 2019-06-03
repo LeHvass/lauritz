@@ -16,13 +16,13 @@ import { BidsComponent } from './portal/product-details/bids/bids.component';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   
-  {path: 'home', component: HomeComponent, children:[
-    {path: 'register', component: RegisterComponent},
-    { path: 'login', component: LoginComponent}
+  { path: 'home', component: HomeComponent, children:[
+    { path: 'register', component: RegisterComponent },
+    { path: 'login', component: LoginComponent }
   ]},
-  {path: 'portal', component: PortalComponent, /*canActivate: [AuthGuard],*/ children:[
-    {path: 'create-auction', component: CreateAuctionComponent},
-    { path: 'display-auctions', component: DisplayAuctionsComponent},
+  { path: 'portal', component: PortalComponent, canActivate: [AuthGuard], children:[
+    { path: 'create-auction', component: CreateAuctionComponent },
+    { path: 'display-auctions', component: DisplayAuctionsComponent },
     { path: 'product-details/:id', component: ProductDetailsComponent, children:[{
       path: 'bids', component: BidsComponent
     }]}

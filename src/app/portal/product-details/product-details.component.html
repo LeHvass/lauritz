@@ -2,13 +2,12 @@
   <h1>{{product.name}}</h1>
   <h2>{{this.highestBid}}</h2>
 
-  <p>{{product.bids.length}} bids</p>
+  <p *ngIf="product.bids">{{product.bids.length}} bids</p>
 
   <button mat-button routerLink="/portal/product-details/{{product._id}}/bids">See all bids</button>
 
   <form [formGroup]="bidForm" (ngSubmit)="onSubmit()">
 
-    <!-- starting price -->
     <mat-form-field>
       <input matInput type="number" placeholder="Bid" formControlName="bid">
     </mat-form-field>

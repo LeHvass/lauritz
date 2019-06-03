@@ -6,7 +6,11 @@ import { TempDataService } from '../services/temp-data.service';
 
 // State at startup.
 // const ds = new TempDataService();
-const INITIAL_STATE: ProductState = { isLoggedIn: undefined, products: TempDataService.products, isLoading: false };
+const INITIAL_STATE: ProductState = {
+  isLoggedIn: undefined,
+  products: TempDataService.products,
+  isLoading: false 
+};
 
 export function productsReducer(state: ProductState = INITIAL_STATE, action: any) {
 

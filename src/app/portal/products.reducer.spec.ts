@@ -14,15 +14,13 @@ describe('products reducer', () => {
 
   it('set isLoggedIn to true', () => {
     
-    let state = {isLoggedIn: undefined, products: TempDataService.products};
+    let state = {isLoggedIn: undefined, isLoading: false, products: TempDataService.products};
     deepFreeze(state);
     
     expect( productsReducer(state, { type: types.ProductActions.LOG_IN, payload: true }))
       .toEqual({isLoggedIn: true, products: TempDataService.products});
   });
 
-  // Create a test to check that your create functionality works AND
-  // does not make state mutations
   it('should add a new product', () => {
     let stateBefore = {products: []} as ProductState; 
     deepFreeze(stateBefore);

@@ -7,7 +7,9 @@ import { Product } from './entities/product';
 export class ProductPipe implements PipeTransform {
   productPrice: number;
 
-  transform(products: Product[], search: any = "", maxPrice: number = 0, filterMetaData = {count: 5}): any {
+  transform(
+    products: Product[], search: any = "",
+    maxPrice: number, filterMetaData = { count: 5 }): any {
 
     // Filter by search
     let result = products.filter(product =>
@@ -19,9 +21,11 @@ export class ProductPipe implements PipeTransform {
     );
 
     // Filter by max price
-    if (maxPrice != 0) {
+    if (maxPrice != null) {
       result = result.filter(product => {
-        let productPrice = product.bids && product.bids.length > 0 ? Math.max.apply(Math, product.bids.map(bid => { return bid.amount })) : product.startingPrice
+        let productPrice = (product.bids && product.bids.length > 0)
+          ? Math.max.apply(Math, product.bids.map(bid => { return bid.amount }))
+          : product.startingPrice;
 
         return productPrice <= maxPrice ? true : false;
       })

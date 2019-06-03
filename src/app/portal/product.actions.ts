@@ -26,16 +26,10 @@ export class ProductActions {
   static GET_PRODUCTS_FAILURE: string = 'GET_PRODUCTS_FAILURE';
   static GET_PRODUCTS_LOADING: string = 'GET_PRODUCTS_LOADING';
 
-  // This should be in an Auth-Section and not in the product.
-  // I include it here for now, to make the first redux exercise easier.
-  // Action creator - calls the redux library.
-
-
   getProducts() {
     this.ngRedux.dispatch({ type: ProductActions.GET_PRODUCTS_LOADING });
 
     this.api.getProducts().subscribe(result => {
-      console.log(result);
       this.ngRedux.dispatch({
         type: ProductActions.GET_PRODUCTS_SUCCESS,
         payload: result.filter(prod => prod.customerId === 'chhv')
@@ -46,7 +40,6 @@ export class ProductActions {
         payload: error
       });
     });
-
   }
 
   getProduct(id: string) {
@@ -74,6 +67,7 @@ export class ProductActions {
       payload: isLoggedIn
     });
   }
+  
   createNewProduct(product: Product): void {
     this.ngRedux.dispatch({
       type: ProductActions.CREATE_PRODUCT_LOADING
