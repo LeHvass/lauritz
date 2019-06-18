@@ -19,7 +19,7 @@ const routes: Routes = [
     ]
   },
   {
-    path: 'portal', component: PortalComponent, /*canActivate: [AuthGuard], */ children: [
+    path: 'portal', component: PortalComponent, canActivate: [AuthGuard], children: [
       { path: 'create-auction', component: CreateAuctionComponent },
       { path: 'display-auctions', component: DisplayAuctionsComponent },
       { path: 'product-details/:id', component: ProductDetailsComponent }

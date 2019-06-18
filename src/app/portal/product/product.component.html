@@ -5,18 +5,19 @@
       <img mat-card-image src="{{product.user.profileImage}}" alt="profile image">
     </div>
     <mat-card-title>{{product.name | uppercase}}</mat-card-title>
-    <mat-card-subtitle>Auction end: {{product.endDate | date: 'dd/MM/yyyy'}}</mat-card-subtitle>
+    <mat-card-subtitle>Auction ends: {{product.endDate | date: 'dd/MM/yyyy'}}</mat-card-subtitle>
   </mat-card-header>
 
 
-  <img *ngIf="product.images" mat-card-image src="{{product.images[0]}}" alt="product image">
+  <img *ngIf="product.images && product.images.length > 0" mat-card-image src="{{product.images}}">
 
   <mat-card-content>
+    <h3>{{this.currentPrice}} DKK</h3>
     <p>
       {{product.description}}
     </p>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button>View product</button>
+    <button mat-stroked-button color="primary">View product</button>
   </mat-card-actions>
 </mat-card>

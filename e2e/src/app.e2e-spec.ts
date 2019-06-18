@@ -16,17 +16,11 @@ describe('workspace-project App', () => {
   });
 
   it('should verify that logging in takes the user to the display auctions page', () => {
-
     browser.get('/home/login');
-
     page.getByFormControlName('username').sendKeys('whatever');
-
     page.getByFormControlName('password').sendKeys('whateverPassword');
-
     element(by.id('btnUserlogin')).click();
-
     expect(browser.getCurrentUrl()).toEqual(browser.baseUrl + '/portal/display-auctions');
-
   });
 
   it('should create a new product', () => {
@@ -39,6 +33,7 @@ describe('workspace-project App', () => {
       element(by.id('btnNewAuction')).click();
       page.getByFormControlName('name').sendKeys('Lipstick');
       page.getByFormControlName('description').sendKeys('It is a great lipstick');
+      page.getByFormControlName('images').sendKeys('https://placehold.it/500x500');
       page.getByFormControlName('startingPrice').sendKeys('50');
       page.getByFormControlName('minimumBid').sendKeys('10');
       page.getByFormControlName('endDate').sendKeys('2019-01-02');
@@ -56,10 +51,8 @@ describe('workspace-project App', () => {
   it('should submit a bid', async () => {
     // Navigate to display-auctions
     element(by.id('display-auctions')).click();
-
     // Click on first product
     $$('.example-card').first().click();
-
     // Save bid count
     let bidCount: number = await $$('.bidCount').getText().then((text) => { return parseInt(text) });
     // Submit bid
@@ -68,7 +61,6 @@ describe('workspace-project App', () => {
     browser.sleep(2000);
     // Save new count
     let newCount: number = await $$('.bidCount').getText().then((text) => { return parseInt(text) });
-
     // Verify bid count to have increased by 1
     expect(newCount - bidCount).toEqual(1);
   });
@@ -107,7 +99,7 @@ describe('workspace-project App', () => {
 
     // Navigate to product details
     element(by.id('display-auctions')).click();
-    
+
     // Click on product
     $$('.example-card').first().click();
     browser.sleep(1000);
@@ -130,13 +122,11 @@ describe('workspace-project App', () => {
 
   });
 
-})
-
-afterEach(async () => {
-  // Assert that there are no errors emitted from the browser
-  const logs = await browser.manage().logs().get(logging.Type.BROWSER);
-  expect(logs).not.toContain(jasmine.objectContaining({
-    level: logging.Level.SEVERE,
-  } as logging.Entry));
-});
+  afterEach(async () => {
+    // Assert that there are no errors emitted from the browser
+    const logs = await browser.manage().logs().get(logging.Type.BROWSER);
+    expect(logs).not.toContain(jasmine.objectContaining({
+      level: logging.Level.SEVERE,
+    } as logging.Entry));
+  });
 });

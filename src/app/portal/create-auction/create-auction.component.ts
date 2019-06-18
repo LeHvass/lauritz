@@ -31,6 +31,7 @@ export class CreateAuctionComponent implements OnInit {
     this.productForm = this.fb.group({
       name: ['', Validators.required],
       description: ['',Validators.required],
+      images: ['',Validators.required],
       startingPrice: ['',Validators.required],
       minimumBid: ['',Validators.required],
       endDate: ['',Validators.required],
