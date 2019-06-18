@@ -3,26 +3,26 @@ export class User {
   username: string;
   password: string;
   email: string;
-  firstname: string;
-  lastname: string;
-  phone: string;
-  gender: Gender; // Male, Female
-  birthDate: Date;
+  firstname?: string;
+  lastname?: string;
+  phone?: string;
+  gender?: Gender; // Male, Female
+  birthDate?: Date;
   profileImage: string;
-  ratings: Rating[];
+  ratings?: Rating[];
 }
 
 export class UserVm {
   _id: string;
   username: string;
   email: string;
-  firstname: string;
-  lastname: string;
-  phone: string;
-  gender: Gender; // Male, Female
-  birthDate: Date;
+  firstname?: string;
+  lastname?: string;
+  phone?: string;
+  gender?: Gender; // Male, Female
+  birthDate?: Date;
   profileImage: string;
-  ratings: Rating[];
+  ratings?: Rating[];
 }
 
 export class Rating {

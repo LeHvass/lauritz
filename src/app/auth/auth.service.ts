@@ -8,11 +8,12 @@ import { tap, delay } from 'rxjs/operators';
 })
 export class AuthService {
   isLoggedIn: boolean = false;
+  isAdmin: boolean;
 
   // store the URL so we can redirect after logging in
   redirectUrl: string;
 
-  login(): Observable<boolean> {
+  login(isAdmin): Observable<boolean> {
     console.log("login from service");
     
     return of(true).pipe(
@@ -20,6 +21,7 @@ export class AuthService {
       tap(val => {
         console.log("now I am logged in!");
         this.isLoggedIn = true
+        this.isAdmin = isAdmin;
       })
     );
   }

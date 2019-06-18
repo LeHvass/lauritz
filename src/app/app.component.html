@@ -1,14 +1,15 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <mat-toolbar color="primary">
-  <span routerLink="/">Lauritz</span>
+  <span routerLink="/">Auction House</span>
   <button mat-button routerLink="/portal/create-auction" id="btnNewAuction">Create new auction item</button>
-  <button mat-button routerLink="/portal/display-auctions">See all auctions</button>
+  <button mat-button routerLink="/portal/display-auctions" id="display-auctions">See all auctions</button>
 
   <!-- This fills the remaining space of the current row -->
   <span class="example-fill-remaining-space"></span>
 
   <!-- <button mat-button>Log out</button> -->
-  <button mat-button routerLink="/home/login" id="btnLogin">Log In</button>
+  <button mat-button routerLink="/home/login" id="btnLogin" *ngIf="!isLoggedIn">Log In</button>
+  <button mat-button routerLink="/home/login" id="btnLogout" (click)="logOut()" *ngIf="isLoggedIn">Log Out</button>
 </mat-toolbar>
 
 <div class="container">

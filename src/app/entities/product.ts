@@ -11,7 +11,7 @@ export class Product {
   images: string[];
   dateCreated: Date;  // User does not fill out
   endDate: Date;
-  bids: Bid[];  // User does not fill out
+  bids?: Bid[];  // User does not fill out
   location: string;
 }
 

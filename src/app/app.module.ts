@@ -9,7 +9,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatDividerModule, MatCardModule, MatSnackBarModule, MatButtonModule, MatToolbarModule, MatIconModule, MatMenuModule, MatGridListModule, MatNativeDateModule, MatSliderModule, MatProgressBarModule, MatTableModule } from '@angular/material';
-import { RegisterComponent } from './register/register.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomeComponent } from './home/home.component';
 import { PortalComponent } from './portal/portal.component';
@@ -25,7 +24,6 @@ import { NgReduxRouter, NgReduxRouterModule } from '@angular-redux/router';
 import { rootReducer } from './store';
 import { HttpClientModule } from '@angular/common/http';
 import { ProductPipe } from './product.pipe';
-import { BidsComponent } from './portal/product-details/bids/bids.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 
@@ -33,7 +31,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent,
     PageNotFoundComponent,
     HomeComponent,
     PortalComponent,
@@ -42,7 +39,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     ProductDetailsComponent,
     ProductComponent,
     ProductPipe,
-    BidsComponent
   ],
   imports: [
     BrowserModule,

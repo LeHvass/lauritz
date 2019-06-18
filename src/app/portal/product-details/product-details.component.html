@@ -1,10 +1,12 @@
 <div *ngIf="product">
   <h1>{{product.name}}</h1>
-  <h2>{{this.highestBid}}</h2>
+  <h2>{{this.currentPrice}} DKK</h2>
+  <p>{{product.description}}</p>
+  <p>Location: {{product.location}}</p>
+  <p>Auction ends: {{product.endDate | date: 'dd/MM/yyyy'}}</p>
+  <small>Created: {{product.dateCreated | date: 'dd/MM/yyyy'}}</small>
 
-  <p *ngIf="product.bids">{{product.bids.length}} bids</p>
-
-  <button mat-button routerLink="/portal/product-details/{{product._id}}/bids">See all bids</button>
+  <p><span class="bidCount">{{this.bidCount}}</span> bids</p>
 
   <form [formGroup]="bidForm" (ngSubmit)="onSubmit()">
 
@@ -13,5 +15,10 @@
     </mat-form-field>
 
     <button mat-raised-button color="primary" id="btnSubmitBid" [disabled]="isLoading">Submit bid</button>
+
+    <mat-error *ngIf="this.bidForm.dirty && this.bidForm.controls.bid.value < this.bidAmount">The current minimum bid
+      is: {{this.bidAmount}}</mat-error>
   </form>
+
+  <button mat-stroked-button color="warn" *ngIf="isAdmin" class="btnDelete" (click)="deleteProduct()">Delete product</button>
 </div>

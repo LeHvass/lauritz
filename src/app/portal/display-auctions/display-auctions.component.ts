@@ -7,6 +7,7 @@ import { NgRedux } from '@angular-redux/store';
 import { ProductActions } from '../product.actions';
 import { Title } from '@angular/platform-browser';
 import { FormBuilder, Form } from '@angular/forms';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-display-auctions',
@@ -21,7 +22,7 @@ export class DisplayAuctionsComponent implements OnInit {
   maxPriceForm: Form;
   maxPriceInput: number;
   filterMetaData;
-
+  subscription: Subscription;
 
   constructor(
     private temp: TempDataService, 
@@ -31,7 +32,7 @@ export class DisplayAuctionsComponent implements OnInit {
     private fb: FormBuilder) { }
 
   ngOnInit() {
-    this.ngRedux.select(state => state.products).subscribe(res => {
+    this.subscription = this.ngRedux.select(state => state.products).subscribe(res => {
       this.products = res.products;
       this.isLoading = res.isLoading;
 
@@ -54,17 +55,17 @@ export class DisplayAuctionsComponent implements OnInit {
         }
       }))
       this.maxPriceInput = this.maxPrice;
-      /*this.maxPriceForm = this.fb.group({
-        bid: [this.bidAmount, [Validators.required, Validators.min(this.bidAmount)]]
-      });*/
     });
 
-    // this.filterMetaData = {count}
     this.filterMetaData = {};
     this.filterMetaData.count = 0;
   }
   onProductClick(dataPassedToMe) {
     console.log(dataPassedToMe);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }

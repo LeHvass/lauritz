@@ -26,10 +26,10 @@ export class ProductsApiService {
     };
     return this.http.post(this.baseUrl, product);
   }
-  updateProduct(product: Product) {
+  updateProduct(product: Product) : Observable<any> {
     return this.http.put(this.baseUrl + '/' + product._id, product, {responseType: 'text'});
   }
-  deleteProduct(productId: string) {
+  deleteProduct(productId: string) : Observable<any> {
     return this.http.delete(this.baseUrl + '/' + productId, {responseType: 'text'});
   }
 }

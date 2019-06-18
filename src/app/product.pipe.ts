@@ -21,7 +21,7 @@ export class ProductPipe implements PipeTransform {
     );
 
     // Filter by max price
-    if (maxPrice != null) {
+    if (maxPrice != null && maxPrice != 0) {
       result = result.filter(product => {
         let productPrice = (product.bids && product.bids.length > 0)
           ? Math.max.apply(Math, product.bids.map(bid => { return bid.amount }))

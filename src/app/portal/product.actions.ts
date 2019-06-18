@@ -11,14 +11,15 @@ export class ProductActions {
     private ngRedux: NgRedux<AppState>, private api: ProductsApiService,
     private router: Router) { }
 
-  static LOG_IN: string = 'LOG_IN';
-
   static CREATE_PRODUCT_LOADING: string = 'CREATE_PRODUCT_LOADING';
   static CREATE_PRODUCT_SUCCESS: string = 'CREATE_PRODUCT_SUCCESS';
   static CREATE_PRODUCT_FAILURE: string = 'CREATE_PRODUCT_FAILURE';
 
 
-  static DELETE_PRODUCT: string = 'DELETE_PRODUCT';
+  static DELETE_PRODUCT_LOADING: string = 'DELETE_PRODUCT_LOADING';
+  static DELETE_PRODUCT_SUCCESS: string = 'DELETE_PRODUCT_SUCCESS';
+  static DELETE_PRODUCT_FAILURE: string = 'DELETE_PRODUCT_FAILURE';
+
   static UPDATE_PRODUCT: string = 'UPDATE_PRODUCT';
   static UPDATE_PRODUCT_FAILURE: string = 'UPDATE_PRODUCT_FAILURE';
 
@@ -46,7 +47,6 @@ export class ProductActions {
     this.ngRedux.dispatch({ type: ProductActions.GET_PRODUCTS_LOADING });
 
     this.api.getProducts().subscribe(result => {
-      //console.log(result);
       this.ngRedux.dispatch({
         type: ProductActions.GET_PRODUCTS_SUCCESS,
         payload: result.filter(prod => prod._id === id)
@@ -56,15 +56,6 @@ export class ProductActions {
         type: ProductActions.GET_PRODUCTS_FAILURE,
         payload: error
       });
-    });
-  }
-
-
-  loggedIn(isLoggedIn: boolean): void {
-    //console.log(isLoggedIn);
-    this.ngRedux.dispatch({
-      type: ProductActions.LOG_IN,
-      payload: isLoggedIn
     });
   }
   
@@ -86,10 +77,6 @@ export class ProductActions {
         payload: whatever
       })
     });
-
-    // Call api
-    // Dispatch action on success
-    // Dispatch action on failure
   }
 
   createBid(product: Product): void {
@@ -129,8 +116,21 @@ export class ProductActions {
 
   deleteProduct(id: string): void {
     this.ngRedux.dispatch({
-      type: ProductActions.DELETE_PRODUCT,
-      payload: id
+      type: ProductActions.DELETE_PRODUCT_LOADING,
+    });
+
+    this.api.deleteProduct(id).subscribe(dataFromWs => {
+      this.ngRedux.dispatch({
+        type: ProductActions.DELETE_PRODUCT_SUCCESS,
+        payload: id
+      });
+      this.router.navigate(['/portal/display-auctions']);
+
+    }, whatever => {
+      this.ngRedux.dispatch({
+        type: ProductActions.DELETE_PRODUCT_FAILURE,
+        payload: whatever
+      })
     });
   }
 

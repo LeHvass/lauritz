@@ -4,7 +4,7 @@
   </mat-form-field>
 </div>
 
-<div class="pos-relative">
+<div class="pos-relative" *ngIf="products.length > 0">
   <p>Only show products below this price</p>
   <span class="pos-absolute font-12 grey-1">{{minPrice}}</span>
   <mat-slider matInput [max]="maxPrice" [min]="minPrice" [thumbLabel]="true" [(ngModel)]="maxPriceInput">

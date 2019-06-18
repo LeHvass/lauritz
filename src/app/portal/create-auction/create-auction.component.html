@@ -1,49 +1,42 @@
-<form [formGroup]="productForm" (ngSubmit)="onSubmit()">
-  
+<h1>Create New Auction</h1>
+
+<form [formGroup]="productForm" (ngSubmit)="onSubmit()" fxLayout='column'>
+
   <!-- name -->
-  <div>
-    <mat-form-field>
-      <input matInput placeholder="Name" formControlName="name">
-    </mat-form-field>
-  </div>
-  
+  <mat-form-field>
+    <input matInput placeholder="Name" formControlName="name">
+  </mat-form-field>
+
   <!-- description -->
-  <div>
-    <mat-form-field>
-      <textarea matInput placeholder="Description" formControlName="description"></textarea>
-    </mat-form-field>
-  </div>
+  <mat-form-field>
+    <textarea matInput placeholder="Description" formControlName="description" cdkTextareaAutosize
+      #autosize="cdkTextareaAutosize" cdkAutosizeMinRows="2" cdkAutosizeMaxRows="9"></textarea>
+  </mat-form-field>
 
   <!-- starting price -->
-  <div>
-    <mat-form-field>
-      <input matInput type="number" placeholder="Starting Price" formControlName="startingPrice">
-    </mat-form-field>
-  </div>
+  <mat-form-field>
+    <input matInput type="number" placeholder="Starting Price" formControlName="startingPrice">
+  </mat-form-field>
 
   <!-- minimum bid -->
-  <div>
-    <mat-form-field>
-      <input matInput type="number" placeholder="Minimum bid" formControlName="minimumBid">
-    </mat-form-field>
-  </div>
+  <mat-form-field>
+    <input matInput type="number" placeholder="Minimum bid" formControlName="minimumBid">
+  </mat-form-field>
 
   <!-- endDate -->
-  <div>
-    <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Auction ends" formControlName="endDate">
-      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-      <mat-datepicker #picker></mat-datepicker>
-    </mat-form-field>
-  </div>
+  <mat-form-field>
+    <input matInput [matDatepicker]="picker" placeholder="Auction ends" formControlName="endDate">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
 
   <!-- location -->
-  <div>
-    <mat-form-field>
-      <input matInput placeholder="Location" formControlName="location">
-    </mat-form-field>
-  </div>
+  <mat-form-field>
+    <input matInput placeholder="Location" formControlName="location">
+  </mat-form-field>
 
-  <button mat-raised-button color="primary" id="btnCreateAuction"
-  [disabled]="isLoading">Auction my product</button>
+  <button mat-raised-button color="primary" id="btnCreateAuction" [disabled]="isLoading">Auction my product</button>
+
+  <button mat-button color="warn" (click)="productForm.reset()">Start Over</button>
+
 </form>

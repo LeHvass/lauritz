@@ -6,11 +6,11 @@ import { UserVm } from './entities/user';
 import { usersReducer } from './portal/users.reducer';
 
 export class UserState {
-  users: UserVm[];
+  users?: UserVm[];
+  isLoggedIn: boolean;
 }
 export class ProductState {
   products: Product[];
-  isLoggedIn: boolean; // Should be in an auth section and not in products
   isLoading: boolean;
 }
 export class AppState {
