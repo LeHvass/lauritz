@@ -1,7 +1,7 @@
 import { ProductActions } from './../portal/product.actions';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth/auth.service';
 import { Title } from '@angular/platform-browser';
