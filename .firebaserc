@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "lauritz-auction": {
+      "hosting": {
+        "lauritz": [
+          "lauritz-auction"
+        ]
+      }
+    }
+  }
+}
