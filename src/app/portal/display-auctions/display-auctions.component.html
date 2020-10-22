@@ -1,6 +1,6 @@
 <div>
   <mat-form-field>
-    <input matInput placeholder="Search for item" [(ngModel)]="searchInput">
+    <input matInput placeholder="Search for item" [(ngModel)]="search">
   </mat-form-field>
 </div>
 
@@ -23,7 +23,7 @@
   <div>
     Showing {{filterMetaData.count}} of {{products.length}} products
   </div>
-  <div *ngFor="let p of products | productFilter: searchInput: maxPriceInput: filterMetaData">
+  <div *ngFor="let p of products | productFilter: search: maxPriceInput: filterMetaData">
 
     <app-product [product]="p" (nameOfTheEventOr)="onProductClick($event)"></app-product>
 

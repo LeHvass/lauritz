@@ -1,7 +1,6 @@
 import { TempDataService } from './../../services/temp-data.service';
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/entities/product';
-import { template } from '@angular/core/src/render3';
 import { AppState } from 'src/app/store';
 import { NgRedux } from '@angular-redux/store';
 import { ProductActions } from '../product.actions';
@@ -17,6 +16,7 @@ import { Subscription } from 'rxjs';
 export class DisplayAuctionsComponent implements OnInit {
   products: Product[];
   isLoading: boolean;
+  search: string;
   minPrice: number;
   maxPrice: number;
   maxPriceForm: Form;
